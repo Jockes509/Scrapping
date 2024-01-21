@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
+import csv
 
 
 url='https://lenouvelliste.com/'
@@ -36,3 +37,16 @@ for tag in article_tags:
         print("Description article:", description)
         print("Lien article:", link)
         print("\n\n")
+
+        lis_contenu=[]
+        lis_contenu.append([title, image, description, link])
+        
+        #Mt fe with open li pat mache alors mwen ouvril konsa pito
+        csv_file = open('scrap.csv', 'a', newline='', encoding='utf-8')
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(['Titre', 'Image', 'Description', 'Lien'])
+        
+        csv_writer.writerows(lis_contenu)
+
+        print("Ekri reussi")
+        
